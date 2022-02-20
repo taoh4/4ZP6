@@ -24,7 +24,8 @@ struct Feb_20App: App {
     
     var body: some Scene {
         WindowGroup {
-            spatialMemory()
+            //spatialMemory()
+            VisionView()
         }
     }
 }

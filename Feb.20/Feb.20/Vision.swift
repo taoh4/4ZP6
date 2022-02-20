@@ -85,12 +85,13 @@ struct VisionView: View {
                 .multilineTextAlignment(.center)
                 .padding()
             Text(question.letter)
-                .font(.system(size: 100, weight: .bold, design: .default))
+                .font(.system(size: 300, weight: .bold, design: .default))
                 .foregroundColor(question.color)
                 .opacity(Double(question.opacity)/100.0)
             //Text(String(question.opacity))
             Button(action: visionPage) {
                 Text(question.choices[0])
+                    .font(.title)
                     .padding()
                     .foregroundColor(Color.white)
                     .frame(width: 120.0)
@@ -100,6 +101,7 @@ struct VisionView: View {
             Button(action: visionPage) {
                 Text(question.choices[1])
                     .padding()
+                    .font(.title)
                     .foregroundColor(Color.white)
                     .frame(width: 120.0)
                     .background(Color.blue)
@@ -108,6 +110,7 @@ struct VisionView: View {
             Button(action: visionPage) {
                 Text(question.choices[2])
                     .padding()
+                    .font(.title)
                     .foregroundColor(Color.white)
                     .frame(width: 120.0)
                     .background(Color.blue)
@@ -116,6 +119,7 @@ struct VisionView: View {
             Button(action: visionPage) {
                 Text(question.choices[3])
                     .padding()
+                    .font(.title)
                     .foregroundColor(Color.white)
                     .frame(width: 120.0)
                     .background(Color.blue)
