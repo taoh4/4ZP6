@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3739595D27C2C8DE00C257A7 /* CollectVoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3739595C27C2C8DE00C257A7 /* CollectVoiceView.swift */; };
 		DA6630AA27C2BA4700E42975 /* Feb_20App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6630A927C2BA4700E42975 /* Feb_20App.swift */; };
 		DA6630AC27C2BA4700E42975 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6630AB27C2BA4700E42975 /* ContentView.swift */; };
 		DA6630AE27C2BA4800E42975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA6630AD27C2BA4800E42975 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3739595C27C2C8DE00C257A7 /* CollectVoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVoiceView.swift; sourceTree = "<group>"; };
 		DA6630A627C2BA4700E42975 /* Feb.20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feb.20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6630A927C2BA4700E42975 /* Feb_20App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feb_20App.swift; sourceTree = "<group>"; };
 		DA6630AB27C2BA4700E42975 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				DA6630A927C2BA4700E42975 /* Feb_20App.swift */,
+				3739595C27C2C8DE00C257A7 /* CollectVoiceView.swift */,
 				DA6630AB27C2BA4700E42975 /* ContentView.swift */,
 				DA6630AD27C2BA4800E42975 /* Assets.xcassets */,
 				DA6630AF27C2BA4800E42975 /* Preview Content */,
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3739595D27C2C8DE00C257A7 /* CollectVoiceView.swift in Sources */,
 				DA6630AC27C2BA4700E42975 /* ContentView.swift in Sources */,
 				DA6630D427C2C13300E42975 /* spatialMemory.swift in Sources */,
 				DA6630AA27C2BA4700E42975 /* Feb_20App.swift in Sources */,
