@@ -9,7 +9,7 @@ import SwiftUI
 
 func feelWorks() {
     if let window = UIApplication.shared.windows.first {
-        window.rootViewController = UIHostingController(rootView: SuggestedHolding())
+        window.rootViewController = UIHostingController(rootView: FeelWorks())
         window.makeKeyAndVisible()
     }
 }
