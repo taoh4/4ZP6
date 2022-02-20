@@ -11,7 +11,7 @@ import SwiftUI
 struct Feb_20App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            spatialMemory()
         }
     }
 }

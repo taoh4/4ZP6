@@ -14,6 +14,7 @@
 		DA6630BB27C2BA4800E42975 /* Feb_20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6630BA27C2BA4800E42975 /* Feb_20Tests.swift */; };
 		DA6630C527C2BA4800E42975 /* Feb_20UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6630C427C2BA4800E42975 /* Feb_20UITests.swift */; };
 		DA6630C727C2BA4800E42975 /* Feb_20UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6630C627C2BA4800E42975 /* Feb_20UITestsLaunchTests.swift */; };
+		DA6630D427C2C13300E42975 /* spatialMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6630D327C2C13300E42975 /* spatialMemory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		DA6630C027C2BA4800E42975 /* Feb.20UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Feb.20UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6630C427C2BA4800E42975 /* Feb_20UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feb_20UITests.swift; sourceTree = "<group>"; };
 		DA6630C627C2BA4800E42975 /* Feb_20UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feb_20UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DA6630D327C2C13300E42975 /* spatialMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spatialMemory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				DA6630AB27C2BA4700E42975 /* ContentView.swift */,
 				DA6630AD27C2BA4800E42975 /* Assets.xcassets */,
 				DA6630AF27C2BA4800E42975 /* Preview Content */,
+				DA6630D327C2C13300E42975 /* spatialMemory.swift */,
 			);
 			path = Feb.20;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA6630AC27C2BA4700E42975 /* ContentView.swift in Sources */,
+				DA6630D427C2C13300E42975 /* spatialMemory.swift in Sources */,
 				DA6630AA27C2BA4700E42975 /* Feb_20App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
