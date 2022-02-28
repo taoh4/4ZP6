@@ -15,41 +15,31 @@ import {
   Text,
   useColorScheme,
   View,
-  Button
+  Button,
+  ImageBackground,
+  TouchableWithoutFeedback
 } from 'react-native';
-import TestPage from './pages';
+import { Sit, SoundCollection, LastMedication, NextMedication, MedicationEffect } from './pages/welcome-screen/welcome';
+import { Outsideviews1 } from './pages/outside-view/outside-view'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  //const isDarkMode = useColorScheme() === 'dark';
-
-  // const backgroundStyle = {
-  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  // };
-
   return (
-    <View style={styles.sectionContainer}>
-        <TestPage></TestPage>
-    </View>
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Sound" component={SoundCollection} options={{ headerShown: false }} />
+      <Stack.Screen name="Sit" component={Sit} options={{ headerShown: false }} />
+      <Stack.Screen name="LastMedication" component={LastMedication} options={{ headerShown: false }} />
+      <Stack.Screen name="NextMedication" component={NextMedication} options={{ headerShown: false }} />
+      <Stack.Screen name="MedicationEffect" component={MedicationEffect} options={{ headerShown: false }} />
+      <Stack.Screen name="Outsideviews1" component={Outsideviews1} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  </NavigationContainer>
+   
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 70,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
