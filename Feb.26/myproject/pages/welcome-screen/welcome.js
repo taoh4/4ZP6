@@ -157,21 +157,6 @@ const NextMedication = ({navigation}) => {
 };
 
 const MedicationEffect = ({navigation}) => {
-  const [time, setTime] = useState(new Date())
-  const [mode, setMode] = useState('time');
-  const [show, setShow] = useState(true);
-
-  const onChange = (event, selectedDate) => {
-    const currentDateTime = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setTime(currentDateTime);
-    console.log("time set as: "+time)
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
 
   return (
     <SafeAreaView>
