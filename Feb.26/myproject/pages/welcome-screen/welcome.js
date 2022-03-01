@@ -14,6 +14,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { getData, storeData } from '../api/file-storage';
 
 const Sit = ({navigation}) => {
 
@@ -51,7 +52,11 @@ const SoundCollection = ({navigation}) => {
         </View>
         <TouchableOpacity 
           style={[styles.button_strong, styles.center, styles.mt_100]}
-          onPress={() => navigation.navigate("Sit")}
+          onPress={() => {
+            navigation.navigate("Sit")
+            storeData('test', 'test')
+            getData('test')
+          }}
         >
           <Text style={[styles.font_34, styles.textColor]}>I Understand</Text>
         </TouchableOpacity>
