@@ -54,8 +54,6 @@ const SoundCollection = ({navigation}) => {
           style={[styles.button_strong, styles.center, styles.mt_100]}
           onPress={() => {
             navigation.navigate("Sit")
-            storeData('test', 'test')
-            getData('test')
           }}
         >
           <Text style={[styles.font_34, styles.textColor]}>I Understand</Text>
@@ -73,7 +71,7 @@ const LastMedication = ({navigation}) => {
     const currentDateTime = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setTime(currentDateTime);
-    console.log("time set as: "+time)
+    storeData("last-medication", String(currentDateTime.toLocaleTimeString()))
   };
 
   return (
@@ -99,9 +97,13 @@ const LastMedication = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity 
           style={[styles.button_strong, styles.center, styles.mt_50]}
-          onPress={() => {navigation.navigate("NextMedication")}}
+          onPress={() => {
+            navigation.navigate("NextMedication")
+            storeData("last-medication", "N/A")
+          }}
         >
-          <Text style={[styles.font_34, styles.textColor]}>Not yet</Text>
+          <Text 
+            style={[styles.font_34, styles.textColor]}>Not yet</Text>
         </TouchableOpacity>
     </SafeAreaView>
   );
@@ -117,12 +119,7 @@ const NextMedication = ({navigation}) => {
     const currentDateTime = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setTime(currentDateTime);
-    console.log("time set as: "+time)
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
+    storeData("next-medication", String(currentDateTime.toLocaleTimeString()))
   };
 
   return (

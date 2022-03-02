@@ -38,7 +38,6 @@ const App = () => {
       <Stack.Screen name="Outsideviews1" component={Outsideviews1} options={{ headerShown: false }} />
     </Stack.Navigator>
   </NavigationContainer>
-   
   );
 };
 
