@@ -30,12 +30,12 @@ const App = () => {
   return (
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Sound" component={SoundCollection} options={{ headerShown: false }} />
-      <Stack.Screen name="Sit" component={Sit} options={{ headerShown: false }} />
-      <Stack.Screen name="LastMedication" component={LastMedication} options={{ headerShown: false }} />
-      <Stack.Screen name="NextMedication" component={NextMedication} options={{ headerShown: false }} />
-      <Stack.Screen name="MedicationEffect" component={MedicationEffect} options={{ headerShown: false }} />
-      <Stack.Screen name="Outsideviews1" component={Outsideviews1} options={{ headerShown: false }} />
+      <Stack.Screen name="Sound" component={SoundCollection} />
+      <Stack.Screen name="Posture" component={Sit} />
+      <Stack.Screen name="Last Time Took Medicine" component={LastMedication}/>
+      <Stack.Screen name="Next Time Taking Medicine" component={NextMedication} />
+      <Stack.Screen name="Medicine Effectiveness" component={MedicationEffect}/>
+      <Stack.Screen name="Outsideviews1" component={Outsideviews1} options={{ headerShown: false, gestureEnabled: false }} />
     </Stack.Navigator>
   </NavigationContainer>
   );

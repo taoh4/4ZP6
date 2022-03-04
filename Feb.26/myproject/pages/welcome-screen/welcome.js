@@ -30,7 +30,7 @@ const Sit = ({navigation}) => {
         </View>
         <TouchableOpacity 
           style={[styles.button_normal, styles.center, styles.mt_100]}
-          onPress={() => navigation.navigate("LastMedication")}
+          onPress={() => navigation.navigate("Last Time Took Medicine")}
         >
           <Text style={[styles.font_34, styles.textColor]}>I have sat down</Text>
         </TouchableOpacity>
@@ -53,7 +53,7 @@ const SoundCollection = ({navigation}) => {
         <TouchableOpacity 
           style={[styles.button_strong, styles.center, styles.mt_100]}
           onPress={() => {
-            navigation.navigate("Sit")
+            navigation.navigate("Posture")
           }}
         >
           <Text style={[styles.font_34, styles.textColor]}>I Understand</Text>
@@ -91,14 +91,14 @@ const LastMedication = ({navigation}) => {
         />
         <TouchableOpacity 
           style={[styles.button_normal, styles.center, styles.mt_50]}
-          onPress={() => {navigation.navigate("MedicationEffect")}}
+          onPress={() => {navigation.navigate("Medicine Effectiveness")}}
         >
           <Text style={[styles.font_34, styles.textColor]}>Looks good</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={[styles.button_strong, styles.center, styles.mt_50]}
           onPress={() => {
-            navigation.navigate("NextMedication")
+            navigation.navigate("Next Time Taking Medicine")
             storeData("last-medication", "N/A")
           }}
         >
@@ -164,13 +164,13 @@ const MedicationEffect = ({navigation}) => {
         </View>
         <TouchableOpacity 
           style={[styles.button_normal, styles.center, styles.mt_100]}
-          onPress={() => {navigation.navigate("NextMedication")}}
+          onPress={() => {navigation.navigate("Next Time Taking Medicine")}}
         >
           <Text style={[styles.font_34, styles.textColor]}>I can feel it!</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={[styles.button_strong, styles.center, styles.mt_50]}
-          onPress={() => {navigation.navigate("NextMedication")}}
+          onPress={() => {navigation.navigate("Next Time Taking Medicine")}}
         >
           <Text style={[styles.font_34, styles.textColor]}>I don't think so</Text>
         </TouchableOpacity>
