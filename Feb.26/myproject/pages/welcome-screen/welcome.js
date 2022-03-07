@@ -71,7 +71,6 @@ const LastMedication = ({navigation}) => {
     const currentDateTime = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setTime(currentDateTime);
-    storeData("last-medication", String(currentDateTime.toLocaleTimeString()))
   };
 
   return (
@@ -82,6 +81,7 @@ const LastMedication = ({navigation}) => {
             </Text>
         </View>
         <DateTimePicker
+          textColor={"black"}
           style={styles.mt_100}
           testID="dateTimePicker"
           value={time}
@@ -91,7 +91,10 @@ const LastMedication = ({navigation}) => {
         />
         <TouchableOpacity 
           style={[styles.button_normal, styles.center, styles.mt_50]}
-          onPress={() => {navigation.navigate("Medicine Effectiveness")}}
+          onPress={() => {
+            navigation.navigate("Medicine Effectiveness")
+            storeData("last-medication", String(time.toLocaleTimeString()))
+          }}
         >
           <Text style={[styles.font_34, styles.textColor]}>Looks good</Text>
         </TouchableOpacity>
@@ -119,7 +122,6 @@ const NextMedication = ({navigation}) => {
     const currentDateTime = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setTime(currentDateTime);
-    storeData("next-medication", String(currentDateTime.toLocaleTimeString()))
   };
 
   return (
@@ -136,6 +138,7 @@ const NextMedication = ({navigation}) => {
             </Text>
         </View>
         <DateTimePicker
+          textColor={"black"}
           style={styles.mt_100}
           testID="dateTimePicker"
           value={time}
@@ -145,7 +148,10 @@ const NextMedication = ({navigation}) => {
         />
         <TouchableOpacity 
           style={[styles.button_normal, styles.center]}
-          onPress={() => {navigation.navigate("Outsideviews1")}}
+          onPress={() => {
+            navigation.navigate("Outsideviews1")
+            storeData("next-medication", time.toLocaleTimeString())
+          }}
         >
           <Text style={[styles.font_34, styles.textColor]}>Looks good</Text>
         </TouchableOpacity>
@@ -164,13 +170,19 @@ const MedicationEffect = ({navigation}) => {
         </View>
         <TouchableOpacity 
           style={[styles.button_normal, styles.center, styles.mt_100]}
-          onPress={() => {navigation.navigate("Next Time Taking Medicine")}}
+          onPress={() => {
+            navigation.navigate("Next Time Taking Medicine")
+            storeData("Effect", "No")
+          }}
         >
           <Text style={[styles.font_34, styles.textColor]}>I can feel it!</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={[styles.button_strong, styles.center, styles.mt_50]}
-          onPress={() => {navigation.navigate("Next Time Taking Medicine")}}
+          onPress={() => {
+            navigation.navigate("Next Time Taking Medicine")
+            storeData("Effect", "No")
+          }}
         >
           <Text style={[styles.font_34, styles.textColor]}>I don't think so</Text>
         </TouchableOpacity>
