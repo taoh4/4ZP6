@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+    Animated,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -20,67 +21,26 @@ const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 console.log("\nPhone dimension get:\nWidth:",windowWidth,"Height:",windowHeight)
 const Gardenviews1 = ({navigation}) => {
-    // Timestamp is required for data collection
-    // But not for now.
     const [pageX, setPageX] = useState(windowWidth-40)
     const [pageY, setPageY] = useState(windowHeight-60)
-    
-    const [startPointValid, setStartPointValid] = useState(false)
-    const [goal, setGoal] = useState(false)
-    const [hideInstruction, setHideInstruction] = useState(0.5)
-
-    const goalConstant = windowHeight/2.1
-    const validStartY = windowHeight*0.76
-    const validStartX = windowWidth*0.6
-    
-
-    const validateStartPos = (e) => {
-        if(e.nativeEvent.pageY >= validStartY && e.nativeEvent.pageX >= validStartX){
-            setStartPointValid(true)
-            setHideInstruction(0)
-        } else {
-            console.log("Invalid start point.",e.nativeEvent.pageX, e.nativeEvent.pageY, validStartX, validStartY)
-        }
-    }
-
-    const validateEndPos = () => {
-        if (pageY <= goalConstant){
-            setGoal(true)
-            setStartPointValid(false)
-            console.log("Goal Complete! Display button...")
-        }
-    }
-
-    const updatePos = (e) => {
-        setPageX(e.nativeEvent.pageX)
-        setPageY(e.nativeEvent.pageY)
-        console.log('touchMove',e.nativeEvent)
-        updateIconSize()
-        validateEndPos()
-    }
-
-    const updateIconSize = () => {
-        setWidthHeight(100 * (pageY-goalConstant+50)/goalConstant)
-        console.log("X:", pageX, "Y:", pageY)
-    }
+    const [rowCol, setRowCol] = useState(2)
+    const MAX_ROW_COL = 5
+    var box_id = []
 
     return (
         <View
             style={styles.backgound}
             onTouchStart={(e) => {
-                !goal? validateStartPos(e) : {}
             }}
             onTouchMove={(e) => {
-                startPointValid? updatePos(e) : {}
             }}
             onTouchEnd={() => {
-                setStartPointValid(false)
-                setHideInstruction(0.5)
+                
             }}
         >
             <ImageBackground
                 source={require("../../assets/garden.jpeg")}
-                style={styles.image}
+                style={[styles.image]}
             >
             </ImageBackground>
         </View>
@@ -105,11 +65,24 @@ const styles = StyleSheet.create({
         backgroundColor: "red",
     },
 
+    flex: {
+        top: '20%',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+
     square: {
-        width: 0,
-        height: 0,
-        backgroundColor: "#FAF9F9",
-        opacity: 0.5,
+        marginTop: 20,
+        width: 50,
+        height: 50,
+        backgroundColor: "red",
+        borderRadius: 15,
+    },
+
+    row: {
+        flexDirection: "row",
+        flexWrap: "wrap",
     },
 
     button_strong: {
