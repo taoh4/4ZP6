@@ -42,6 +42,10 @@ const Gardenviews1 = ({navigation}) => {
                 source={require("../../assets/garden.jpeg")}
                 style={[styles.image]}
             >
+                <Image 
+                    source={require("../../assets/rose_1.png")}
+                    style={styles.flower}
+                />
             </ImageBackground>
         </View>
     );
@@ -56,6 +60,14 @@ const styles = StyleSheet.create({
     image: {
         height: '100%',
         width: '100%',
+    },
+
+    flower: {
+        height: '60%',
+        width: '60%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        top: '40%'
     },
 
     circle: {

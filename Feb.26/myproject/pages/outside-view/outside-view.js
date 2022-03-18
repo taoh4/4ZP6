@@ -127,9 +127,8 @@ const Outsideviews1 = ({navigation}) => {
     );
 };
 
+var viewPos = {}
 const Outsideviews2 = ({navigation}) => {
-    const [pageX, setPageX] = useState(windowWidth-40)
-    const [pageY, setPageY] = useState(windowHeight-60)
     const [rowCol, setRowCol] = useState(2)
     const MAX_ROW_COL = 5
     var box_id = []
@@ -139,15 +138,31 @@ const Outsideviews2 = ({navigation}) => {
     // const fadeAnim = useRef([])
     const fadeAnim = useRef([])
     const blockClick = useRef(true)
+    const elementPos = {}
+    const boxPos = {}
     initRef()
 
     useEffect(() => {
-        console.log("re render")
         blockClick.current=true
         setTimeout(seq_blink, 1000)
+        setTimeout(function() {
+            elementPos[-1] = viewPos[-1]
+            for(let i = 0; i < rowCol*rowCol; i++) {
+                boxInfo = {}
+                boxInfo["boxID"] = i
+                boxInfo["top-left-corner"] = {"x": elementPos[-1]["x"] + elementPos[i]["x"], "y": elementPos[-1]["y"]  + elementPos[i]["y"]}
+                boxInfo["height"] = elementPos[i]["height"]
+                boxInfo["width"] = elementPos[i]["width"]
+                boxInfo["center"] = {"x": boxInfo["top-left-corner"]["x"] + boxInfo["width"]/2, "y": boxInfo["top-left-corner"]["y"] + boxInfo["height"]/2}
+                boxPos[i] = boxInfo
+            }
+        }, 1000)
         setTimeout(function(){
             blockClick.current=false
             console.log("======= Animation Finished =======")
+            for(let i = 0; i < rowCol*rowCol; i++){
+                console.log(boxPos[i])
+            }
         }, 1000+700*rowCol)
     })
     
@@ -156,7 +171,7 @@ const Outsideviews2 = ({navigation}) => {
         var animateSequence = []
         for(let i = 0; i < rowCol; i++) {
             const box_id = correct_seq_queue.shift()
-            console.log("seq i:", i, "box id:", box_id)
+            console.log("box id:", box_id)
             animateSequence.push(
                 Animated.sequence(
                     [
@@ -176,6 +191,11 @@ const Outsideviews2 = ({navigation}) => {
             )
         }
         Animated.sequence(animateSequence).start()
+    }
+
+    function calc_center(boxID, touchPos)  {
+        const center = boxPos[boxID]["center"]
+        return Math.sqrt((touchPos["x"]-center["x"])*(touchPos["x"]-center["x"]) + (touchPos["y"]-center["y"])*(touchPos["y"]-center["y"]))
     }
 
     function initRef() {
@@ -232,41 +252,51 @@ const Outsideviews2 = ({navigation}) => {
     }
 
     const endLevel = () => {
-        console.log("end level recieved")
+        console.log("=== end level recieved, next scene to be implemented ===")
+    }
+
+    function onLayout(event, boxID){
+        elementPos[boxID] = event.nativeEvent.layout
+        if(boxID == -1){
+            viewPos[boxID] = event.nativeEvent.layout
+        }
     }
 
     return (
         <View
             style={styles.backgound}
             onTouchStart={(e) => {
+                console.log("\nx:", e.nativeEvent.pageX, "\ny:", e.nativeEvent.pageY, "\ntimestamp:", e.nativeEvent.timestamp)
             }}
-            onTouchMove={(e) => {
+            onTouchMove={() => {
             }}
             onTouchEnd={() => {
-                
             }}
         >
             <ImageBackground
                 source={require("../../assets/welcome.jpeg")}
                 style={[styles.image]}
             >
-                <View style={[styles.flex, styles.row, {top: '50%'}]}>
+                <View style={[styles.flex, styles.row, {top: '50%'}]}                
+                    onLayout = {(e) => onLayout(e, -1)}
+                >
                     {box_id.map((boxID) => { 
                         return(
                             <TouchableOpacity 
-                                style={[{width: String(90/rowCol)+'%', height: (42/rowCol)+'%'}]}
+                                onLayout = {(e) => onLayout(e, boxID)}
+                                style={[{width: String(90/rowCol)+'%', height: (42/rowCol)+'%', marginTop: 10}]}
                                 key={boxID}
-                                onPress={() => {
+                                onPress={(e) => {
                                     if(!blockClick.current){
                                         click_seq.push(boxID)
-                                        console.log("click sequence:", click_seq)
+                                        console.log("\nclick sequence:", click_seq, "\ndistance to box center:", calc_center(boxID, {"x": e.nativeEvent.pageX, "y": e.nativeEvent.pageY}))
                                         ifNextLevel()
                                     }
                                 }
                             }
                             > 
                                 <Animated.View
-                                    style={[styles.square2, {opacity: fadeAnim.current[boxID], width: '90%', height: '90%', marginRight: 'auto', marginLeft: 'auto'}]}
+                                    style={[styles.square2, {opacity: fadeAnim.current[boxID], width: '100%', height: '100%', marginRight: 'auto', marginLeft: 'auto'}]}
                                 />
                             </TouchableOpacity>
                         )
@@ -304,7 +334,6 @@ const styles = StyleSheet.create({
     },
 
     square2: {
-        marginTop: 20,
         width: 50,
         height: 50,
         backgroundColor: "red",
