@@ -26,7 +26,7 @@ import { shuffle } from '../api/util';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 console.log("\nPhone dimension get:\nWidth:",windowWidth,"Height:",windowHeight)
-
+/*
 setUpdateIntervalForType(SensorTypes.accelerometer, 400)
 const subscription = accelerometer.subscribe(({ x, y, z, timestamp }) =>
         console.log({ x, y, z, timestamp }),
@@ -34,6 +34,7 @@ const subscription = accelerometer.subscribe(({ x, y, z, timestamp }) =>
             console.log("The sensor is not available");
         }
     );
+*/
 // Drag to walk
 const Outsideviews1 = ({navigation}) => {
     // Timestamp is required for data collection
@@ -114,7 +115,7 @@ const Outsideviews1 = ({navigation}) => {
                         <TouchableOpacity 
                             style={styles.button_strong}
                             onPress={() => {
-                                navigation.navigate("Gardenviews1")
+                                navigation.navigate("Note")
                             }}
                             >
                             <Text 
