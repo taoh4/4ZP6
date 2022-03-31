@@ -296,7 +296,8 @@ const Outsideviews2 = ({navigation}) => {
                                 }
                             }
                             > 
-                                <Animated.View
+                                <Animated.Image
+                                    source={require("../../assets/spatial.jpg")}
                                     style={[styles.square2, {opacity: fadeAnim.current[boxID], width: '100%', height: '100%', marginRight: 'auto', marginLeft: 'auto'}]}
                                 />
                             </TouchableOpacity>
