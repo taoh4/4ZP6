@@ -21,61 +21,65 @@ import { getData, storeData } from '../api/file-storage';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 console.log("\nPhone dimension get:\nWidth:",windowWidth,"Height:",windowHeight)
+
+var flower_progress = -999999
 const Gardenviews1 = ({navigation}) => {
-    var flower_progress = 0
-    var plant_date = Date()
+    var plant_date = new Date()
     var flowerState = flowerStateFunction()
-    const [progress, setProgress] = useState(0)
+    const [progress, setProgress] = useState(-2)
 
-
-    storeData("flower", String(0))
+    async function update() {
+        if(flower_progress >= 1) {
+            flower_progress = 1
+        }
+        flower_progress+=0.1
+        await storeData("flower", JSON.stringify({progress: String(flower_progress), last_modify: new Date()}))
+        console.log("current progress:", flower_progress)
+        flowerState = flowerStateFunction()
+        console.log(flowerStateFunction())
+        setProgress(flowerState)
+    }
 
     useEffect(() => {
         async function getFlower() {
             try {
-                getData("flower").then(flower => flower_progress = Number(flower))
+                getData("flower").then(flower => {
+                    flower_progress = Number(JSON.parse(flower).progress)
+                    plant_date = new Date(JSON.parse(flower).last_modify)
+                })
                 .catch(function(error){
                     console.log(error)
-            })
+                })
             } catch(error) {
                 console.log(error)
             }
-
-            console.log("progress:", flower_progress)
-
-            if(flower_progress == null || isNaN(flower_progress)) {
-                flower_progress = 0
-            }
-
         }
-
-            setInterval(async function() {
-                if(flower_progress >= 1) {
-                    flower_progress = 1
-                }
-                flower_progress+=0.1
-                await storeData("flower", String(flower_progress))
-                console.log("current progress:", flower_progress)
-                flowerState = flowerStateFunction()
-                console.log(flowerStateFunction())
-                setProgress(flowerState)
-            }, 3000)
         getFlower()
+        update()
+        setInterval(update, 3000)
 
         return () => {
             console.log("unmount")
         }
     }, [])
+
+    function plant() {
+        storeData("flower", JSON.stringify({progress: String(0), last_modify: String(new Date())}))
+    }
     
     function flowerStateFunction() {
-        if(flower_progress >= 0.9) {
+        if (flower_progress >= 1) {
+            return 4
+        }else if(flower_progress >= 0.9) {
             return 3
         }else if (flower_progress >= 0.3) {
             return 2
         }else if (flower_progress >= 0.1) {
             return 1
+        }else if (flower_progress >= 0) {
+            return 0
         }
-        return 0
+        return -1
     }
     //var flowerState = flowerStateFunction()
     //const flowerState = 1
@@ -96,10 +100,26 @@ const Gardenviews1 = ({navigation}) => {
                 source={require("../../assets/garden.jpeg")}
                 style={[styles.image]}
             >   
+                {progress == -1 ? (
+                    <TouchableOpacity 
+                        style={styles.button_strong}
+                        onPress={() => {
+                            plant()
+                            flower_progress = 0
+                            setProgress(0)
+                        }}
+                        >
+                        <Text 
+                            style={[styles.font_34, styles.textColor]}>Plant my flower</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <></>
+                )}
+
                 {progress == 0 ? (
                     <Image 
                     source={require("../../assets/rose_0.png")}
-                    style={[styles.flower]}
+                    style={[styles.flower, {width: '30%', height: '15%', top: '84%'}]}
                     />
                     ) : (
                         <></>
@@ -135,7 +155,29 @@ const Gardenviews1 = ({navigation}) => {
                         <></>
                     )
                 }
-                
+
+                {progress == 4 ? (
+                    <>
+                        <Image 
+                            source={require("../../assets/rose_3.png")}
+                            style={styles.flower}
+                        />
+                        <TouchableOpacity 
+                            style={[styles.button_strong, {top: '30%'}]}
+                            onPress={() => {
+                                plant()
+                                flower_progress = 0
+                                setProgress(0)
+                            }}
+                            >
+                            <Text 
+                                style={[styles.font_34, styles.textColor]}>It's grown up</Text>
+                        </TouchableOpacity>
+                    </>
+
+                ) : (
+                    <></>
+                )}
             </ImageBackground>
         </View>
     );
