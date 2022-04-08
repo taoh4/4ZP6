@@ -20,6 +20,8 @@ const TouchView = ({navigation}) => {
     const [countL, setCountL] = useState(0);
     const [countR, setCountR] = useState(0);
 
+    {setTimeout(() => {navigation.navigate("Gardenviews1");}, 20000)}
+
     return (
         <View
             style={{flex:1, flexDirection: 'column', justifyContent: 'space-between'}}
@@ -35,13 +37,13 @@ const TouchView = ({navigation}) => {
             <View style = {{flexDirection: 'row',  flex:1, justifyContent: 'space-between'}}>
                 <TouchableOpacity
                     style={[styles.button1]}
-                    onPress={() => {setCountL(countL+1), console.log("Left pressed")}}
+                    onPress={(e) => {setCountL(countL+1), console.log("Left pressed at ",e.timeStamp)}}
                 >
                     <Text style={[styles.text, styles.center]}>Tap</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={[styles.button2]}
-                    onPress={() => {setCountR(countR+1), console.log("Right clicked")}}
+                    onPress={(e) => {setCountR(countR+1), console.log("Right clicked at", e.timeStamp)}}
                 >
                     <Text style={[styles.text, styles.center]}>Tap</Text>
                 </TouchableOpacity>
