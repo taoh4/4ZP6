@@ -24,7 +24,14 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 const Pocket = ({navigation}) => {
     setUpdateIntervalForType(SensorTypes.accelerometer, 400); // defaults to 100ms
 
-    var subscription = accelerometer.subscribe(({ x, y, z, timestamp }) => console.log({ x, y, z, timestamp }));
+    var subscription = accelerometer.subscribe(
+      ({ x, y, z, timestamp }) => console.log({ x, y, z, timestamp }),
+
+      // You have to add this to prevent error in virtual environment
+      error => {
+        console.log("The sensor is not available");
+      }
+    );
 
     {setTimeout(() => {{/*start record data*/}}, 5000)}
 

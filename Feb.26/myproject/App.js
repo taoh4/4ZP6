@@ -30,9 +30,9 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-  <NavigationContainer>
-    <Stack.Navigator>
-      {/* <Stack.Screen name="Sound" component={SoundCollection} />
+    <NavigationContainer>
+      <Stack.Navigator>
+        {/* <Stack.Screen name="Sound" component={SoundCollection} />
       <Stack.Screen name="Posture" component={Sit} />
       <Stack.Screen name="Last Time Took Medicine" component={LastMedication}/>
       <Stack.Screen name="Next Time Taking Medicine" component={NextMedication} />
@@ -40,11 +40,15 @@ const App = () => {
       <Stack.Screen name="Note" component={Pocket} />
       <Stack.Screen name="Outsideviews1" component={Outsideviews1} options={{ headerShown: false, gestureEnabled: false }} />
       <Stack.Screen name="Gardenviews1" component={Gardenviews1} options={{ headerShown: false, gestureEnabled: false }} /> 
-      <Stack.Screen name="Outsideviews2" component={Outsideviews2} options={{ headerShown: false, gestureEnabled: false }} />*/}
+      <Stack.Screen name="Outsideviews2" component={Outsideviews2} options={{ headerShown: false, gestureEnabled: false }} /> */}
 
-      <Stack.Screen name="Gardenviews1" component={Gardenviews1} options={{ headerShown: false, gestureEnabled: false }} /> 
-    </Stack.Navigator>
-  </NavigationContainer>
+        <Stack.Screen
+          name="Gardenviews1"
+          component={Gardenviews1}
+          options={{headerShown: false, gestureEnabled: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

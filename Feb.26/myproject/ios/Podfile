@@ -4,7 +4,10 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '11.0'
 
 target 'myproject' do
+  permissions_path = '../node_modules/react-native-permissions/ios'
   config = use_native_modules!
+
+  pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone"
 
   use_react_native!(
     :path => config[:reactNativePath],

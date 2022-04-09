@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { getData, storeData } from '../api/file-storage';
+import { check,request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
 const Sit = ({navigation}) => {
 
@@ -40,6 +41,35 @@ const Sit = ({navigation}) => {
 
 const SoundCollection = ({navigation}) => {
 
+  var soundStatus = null
+
+  useEffect(() => {
+    check(PERMISSIONS.IOS.MICROPHONE)
+    .then((result) => {
+      switch (result) {
+        case RESULTS.UNAVAILABLE:
+          console.log('This feature is not available (on this device / in this context)');
+          break;
+        case RESULTS.DENIED:
+          console.log('The permission has not been requested / is denied but requestable');
+          break;
+        case RESULTS.LIMITED:
+          console.log('The permission is limited: some actions are possible');
+          break;
+        case RESULTS.GRANTED:
+          console.log('The permission is granted');
+          break;
+        case RESULTS.BLOCKED:
+          console.log('The permission is denied and not requestable anymore');
+          break;
+      }
+    })
+    .catch((error) => {
+      console.log("An error occurred while checking the permission")
+    });
+  }, [])
+  
+
   return (
     <SafeAreaView>
         <View style={styles.sectionContainer}>
@@ -47,13 +77,15 @@ const SoundCollection = ({navigation}) => {
                 Note
             </Text>
             <Text style={[styles.description, styles.center, styles.font_34]}>
-                This application may collect information of your voice!
+                This application may collect information of your voice for analysis!
             </Text>
         </View>
         <TouchableOpacity 
           style={[styles.button_strong, styles.center, styles.mt_100]}
           onPress={() => {
-            navigation.navigate("Posture")
+            request(PERMISSIONS.IOS.MICROPHONE).then((result) => {
+              navigation.navigate("Posture")
+            })
           }}
         >
           <Text style={[styles.font_34, styles.textColor]}>I Understand</Text>
