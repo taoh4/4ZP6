@@ -60,7 +60,7 @@ function Gardenviews1({navigation}) {
   const [pressLock, setPressLock] = useState(false)
   const [progressBar, setProgressBar] = useState(0)
   const WATER_CAN_DEFAULT_ANGLE = 45
-  const MAX_MISFORTUNE = 2
+  const MAX_MISFORTUNE = 3;
 
   onStartRecord = async () => {
     const result = await audioRecorderPlayer.startRecorder();
@@ -98,24 +98,24 @@ function Gardenviews1({navigation}) {
       JSON.stringify({
         progress: String(flower_progress),
         last_modify: new Date(),
-        misfortune: misfortune
+        misfortune: misfortune,
       }),
     );
     flowerState = flowerStateFunction();
     console.log(flowerStateFunction());
     setProgress(flowerState);
-    setProgressBar(flower_progress)
+    setProgressBar(flower_progress);
   }
 
   useEffect(() => {
-    var temp = ""
+    var temp = '';
     async function getFlower() {
       try {
         getData('flower')
           .then(flower => {
             flower_progress = Number(JSON.parse(flower).progress);
             last_modify = new Date(JSON.parse(flower).last_modify);
-            temp = JSON.parse(flower).misfortune
+            temp = JSON.parse(flower).misfortune;
           })
           .catch(function (error) {
             console.log(error);
@@ -128,11 +128,11 @@ function Gardenviews1({navigation}) {
     update();
     setInterval(update, 3000);
 
-    if(temp != 0) {
-        setMisfortune(temp);
-    }else {
-        //setMisfortune(Math.floor(Math.random() * 1 + 1))
-        setMisfortune(0)
+    if (temp != 0) {
+      setMisfortune(temp);
+    } else {
+      setMisfortune(2);
+      //setMisfortune(Math.floor(Math.random() * MAX_MISFORTUNE + 1))
     }
 
     return () => {
